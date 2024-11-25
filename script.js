@@ -1,5 +1,6 @@
 let currentQuestionIndex = 0;
 let score = 0;
+const maxQuestions = 25; // Set the maximum number of questions per session
 
 // Function to load the current question and options
 function loadQuestion() {
@@ -29,7 +30,6 @@ function checkAnswer(selectedAnswer, optionElement) {
   // Highlight the selected answer based on correctness
   const options = document.querySelectorAll(".flex.items-center");
 
-  // Highlight the selected option based on whether it's correct or not
   if (selectedAnswer !== correctAnswer) {
     optionElement.classList.add("bg-red-200");
   } else {
@@ -38,13 +38,11 @@ function checkAnswer(selectedAnswer, optionElement) {
   }
 
   // Find and highlight the correct option if the selected answer is wrong
-  const correctOption = [...options].find(
-    (option) => {
-      const optionText = option.querySelector("p");
-      return optionText && optionText.textContent === correctAnswer; // Safely access optionText
-    }
-  );
-  
+  const correctOption = [...options].find((option) => {
+    const optionText = option.querySelector("p");
+    return optionText && optionText.textContent === correctAnswer; // Safely access optionText
+  });
+
   if (correctOption) {
     correctOption.classList.add("bg-green-200"); // Highlight correct option in green
   }
@@ -54,7 +52,7 @@ function checkAnswer(selectedAnswer, optionElement) {
     option.onclick = null; // Disable clicks after selection
   });
 
-  // Move to the next question or show the final score
+  // Move to the next question or show the final score after a delay
   setTimeout(() => {
     // Reset the styles for all options
     options.forEach((option) => {
@@ -62,23 +60,23 @@ function checkAnswer(selectedAnswer, optionElement) {
     });
 
     currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length) {
+    if (currentQuestionIndex < quizData.length && currentQuestionIndex < maxQuestions) {
       loadQuestion();
     } else {
       displayScore(); // Show the scoreboard when the quiz ends
     }
-  }, 500); // 0.5-seconds delay before going to the next question
+  }, 1000); // 1-second delay before going to the next question
 }
 
 // Function to display the final score and show the scoreboard
 function displayScore() {
-    AOS.init();
+  AOS.init();
   // Hide the quiz section and show the scoreboard
   const scoreboard = document.getElementById("scoreboard");
   scoreboard.style.display = "flex"; // Show scoreboard
 
   // Calculate the score out of 70
-  const totalQuestions = quizData.length;
+  const totalQuestions = Math.min(quizData.length, maxQuestions);
   const scoreOutOf70 = Math.round((score / totalQuestions) * 70);
 
   // Set the score in the scoreboard
@@ -100,7 +98,7 @@ function resetQuiz() {
 
   // Reset the score in the scoreboard
   document.getElementById("score").textContent = "0";
-  
+
   // Reload the first question
   loadQuestion();
 }
