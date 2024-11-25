@@ -97,21 +97,7 @@ function displayScore() {
 
 // Function to reset the quiz
 function resetQuiz() {
-  currentQuestionIndex = 0;
-  score = 0;
-
-  // Shuffle questions again
-  shuffleQuestions();
-
-  // Hide the scoreboard
-  const scoreboard = document.getElementById("scoreboard");
-  scoreboard.style.display = "none"; // Hide scoreboard
-
-  // Reset the score in the scoreboard
-  document.getElementById("score").textContent = "0";
-
-  // Reload the first question
-  loadQuestion();
+  location.reload(); // Reload the page
 }
 
 // Add event listener to the "Take test again" button
