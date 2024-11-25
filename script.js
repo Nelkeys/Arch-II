@@ -49,7 +49,7 @@ function checkAnswer(selectedAnswer, optionElement) {
 
   // Find and highlight the correct option
   const correctOption = [...options].find((option) => {
-    const optionText = option.querySelector("p");
+    const optionText = option.querySelector("div.text-sm");
     return optionText && optionText.textContent === correctAnswer; // Safely access optionText
   });
 
@@ -80,8 +80,6 @@ function checkAnswer(selectedAnswer, optionElement) {
 
 // Function to display the final score and show the scoreboard
 function displayScore() {
-  AOS.init();
-
   // Show the scoreboard
   const scoreboard = document.getElementById("scoreboard");
   scoreboard.style.display = "flex"; // Show scoreboard
@@ -93,7 +91,7 @@ function displayScore() {
   // Set the score in the scoreboard
   document.getElementById("score").textContent = scoreOutOf70;
 
-  // You can also update the total questions if necessary
+  // Update the total questions
   document.getElementById("total-questions").textContent = totalQuestions;
 }
 
