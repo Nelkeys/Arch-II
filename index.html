@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body class="bg-gray-100">
+    <section class="mx-8 md:mx-20 lg:mx-96 mt-20">
+      <header>
+        <h1 class="headline font-bold text-2xl">Computer Architecture II</h1>
+      </header>
+
+      <p id="question" class="mt-10"><!-- loaded dynamically --></p>
+
+      <div class="grid grid-cols-1 gap-4 mt-10 w-[100%]">
+        <!-- Option A -->
+        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-0">
+          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">A</div>
+          <div class="text-sm" id="text-option-0"></div>
+        </div>
+
+        <!-- Option B -->
+        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-1">
+          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">B</div>
+          <div class="text-sm" id="text-option-1"></div>
+        </div>
+
+        <!-- Option C -->
+        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-2">
+          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">C</div>
+          <div class="text-sm" id="text-option-2"></div>
+        </div>
+
+        <!-- Option D -->
+        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-3">
+          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">D</div>
+          <div class="text-sm" id="text-option-3"></div>
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <div class="mx-8 md:mx-20 lg:mx-96 flex justify-center gap-4 mt-10 text-sm">
+      <p class="border border-green-600 rounded-full border-2 flex items-center justify-center h-12 w-12 position-absolute text-left">
+        <span id="question-number">1</span> /
+        <span class="text-green-600 font-bold" id="total-questions">25</span>
+      </p>
+    </div>
+
+
+    <div id="scoreboard" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div data-aos="flip-left" class="flex items-center justify-center gap-4 flex-col bg-white w-60 h-60 p-4 rounded-lg shadow-lg">
+            <p>Your score is:</p>
+            <p class="text-sm"><span class="text-2xl text-green-600" id="score"></span> / 70</p>
+            <button class="text-xs text-white bg-green-600 py-2 px-4 rounded">Take test again</button>
+        </div>
+    </div>
+
+
+
+    <!-- <script>
+        AOS.init();
+      </script> -->
+    <script src="/quizData.js"></script>
+    <script src="/script.js"></script>
+  </body>
+</html>
