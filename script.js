@@ -47,7 +47,7 @@ function checkAnswer(selectedAnswer, optionElement) {
     score++; // Increment score only if the answer is correct
   }
 
-  // Find and highlight the correct option if the selected answer is wrong
+  // Find and highlight the correct option
   const correctOption = [...options].find((option) => {
     const optionText = option.querySelector("p");
     return optionText && optionText.textContent === correctAnswer; // Safely access optionText
@@ -81,7 +81,8 @@ function checkAnswer(selectedAnswer, optionElement) {
 // Function to display the final score and show the scoreboard
 function displayScore() {
   AOS.init();
-  // Hide the quiz section and show the scoreboard
+
+  // Show the scoreboard
   const scoreboard = document.getElementById("scoreboard");
   scoreboard.style.display = "flex"; // Show scoreboard
 
@@ -104,8 +105,7 @@ function resetQuiz() {
   // Shuffle questions again
   shuffleQuestions();
 
-  // Hide the scoreboard and show the quiz section again
-  document.querySelector("section").style.display = "block";
+  // Hide the scoreboard
   const scoreboard = document.getElementById("scoreboard");
   scoreboard.style.display = "none"; // Hide scoreboard
 
