@@ -1,12 +1,22 @@
 let currentQuestionIndex = 0;
 let score = 0;
 const maxQuestions = 25; // Set the maximum number of questions per session
+let shuffledQuizData = []; // Array to hold shuffled questions
+
+// Function to shuffle the questions
+function shuffleQuestions() {
+  shuffledQuizData = quizData.slice(); // Create a copy of the quizData array
+  for (let i = shuffledQuizData.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledQuizData[i], shuffledQuizData[j]] = [shuffledQuizData[j], shuffledQuizData[i]];
+  }
+}
 
 // Function to load the current question and options
 function loadQuestion() {
   const questionElement = document.getElementById("question");
   const options = document.querySelectorAll(".flex.items-center");
-  const questionData = quizData[currentQuestionIndex];
+  const questionData = shuffledQuizData[currentQuestionIndex];
 
   questionElement.textContent = questionData.question;
 
@@ -24,7 +34,7 @@ function loadQuestion() {
 
 // Function to check if the selected answer is correct
 function checkAnswer(selectedAnswer, optionElement) {
-  const questionData = quizData[currentQuestionIndex];
+  const questionData = shuffledQuizData[currentQuestionIndex];
   const correctAnswer = questionData.correctAnswer;
 
   // Highlight the selected answer based on correctness
@@ -60,7 +70,7 @@ function checkAnswer(selectedAnswer, optionElement) {
     });
 
     currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length && currentQuestionIndex < maxQuestions) {
+    if (currentQuestionIndex < shuffledQuizData.length && currentQuestionIndex < maxQuestions) {
       loadQuestion();
     } else {
       displayScore(); // Show the scoreboard when the quiz ends
@@ -76,7 +86,7 @@ function displayScore() {
   scoreboard.style.display = "flex"; // Show scoreboard
 
   // Calculate the score out of 70
-  const totalQuestions = Math.min(quizData.length, maxQuestions);
+  const totalQuestions = Math.min(shuffledQuizData.length, maxQuestions);
   const scoreOutOf70 = Math.round((score / totalQuestions) * 70);
 
   // Set the score in the scoreboard
@@ -90,6 +100,9 @@ function displayScore() {
 function resetQuiz() {
   currentQuestionIndex = 0;
   score = 0;
+
+  // Shuffle questions again
+  shuffleQuestions();
 
   // Hide the scoreboard and show the quiz section again
   document.querySelector("section").style.display = "block";
@@ -106,5 +119,6 @@ function resetQuiz() {
 // Add event listener to the "Take test again" button
 document.querySelector("#scoreboard button").addEventListener("click", resetQuiz);
 
-// Load the first question on page load
+// Shuffle questions and load the first question on page load
+shuffleQuestions();
 loadQuestion();
