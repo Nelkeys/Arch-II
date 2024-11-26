@@ -6,7 +6,7 @@ let shuffledQuizData = []; // Array to hold shuffled questions
 // Function to fetch quiz data from your Vercel API endpoint
 async function fetchQuizData() {
   try {
-    const response = await fetch("https://arch2quiz.vercel.app/api/quizData"); // Replace with your Vercel URL
+    const response = await fetch("https://arch2quiz.vercel.app/api/quizData"); 
     const data = await response.json();
     shuffledQuizData = data;
     shuffleQuestions(); // Shuffle the quiz data after it's fetched
