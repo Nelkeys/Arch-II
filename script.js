@@ -3,9 +3,21 @@ let score = 0;
 const maxQuestions = 25; // Set the maximum number of questions per session
 let shuffledQuizData = []; // Array to hold shuffled questions
 
+// Function to fetch quiz data from your Vercel API endpoint
+async function fetchQuizData() {
+  try {
+    const response = await fetch("https://arch2quiz.vercel.app/api/quizData"); // Replace with your Vercel URL
+    const data = await response.json();
+    shuffledQuizData = data;
+    shuffleQuestions(); // Shuffle the quiz data after it's fetched
+    loadQuestion(); // Load the first question
+  } catch (error) {
+    console.error("Error fetching quiz data:", error);
+  }
+}
+
 // Function to shuffle the questions
 function shuffleQuestions() {
-  shuffledQuizData = quizData.slice(); // Create a copy of the quizData array
   for (let i = shuffledQuizData.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledQuizData[i], shuffledQuizData[j]] = [shuffledQuizData[j], shuffledQuizData[i]];
@@ -103,6 +115,5 @@ function resetQuiz() {
 // Add event listener to the "Take test again" button
 document.querySelector("#scoreboard button").addEventListener("click", resetQuiz);
 
-// Shuffle questions and load the first question on page load
-shuffleQuestions();
-loadQuestion();
+// Fetch quiz data from the API and start the quiz
+fetchQuizData();
