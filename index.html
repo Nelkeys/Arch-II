@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="icons/icon-dark.png" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/icon-dark.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/b16a1d681b.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
 
@@ -21,52 +25,161 @@
 
       <div class="grid grid-cols-1 gap-4 mt-10 w-[100%]">
         <!-- Option A -->
-        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-0">
-          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">A</div>
+        <div
+          class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer"
+          id="option-0"
+        >
+          <div
+            class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold"
+          >
+            A
+          </div>
           <div class="text-sm" id="text-option-0"></div>
         </div>
 
         <!-- Option B -->
-        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-1">
-          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">B</div>
+        <div
+          class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer"
+          id="option-1"
+        >
+          <div
+            class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold"
+          >
+            B
+          </div>
           <div class="text-sm" id="text-option-1"></div>
         </div>
 
         <!-- Option C -->
-        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-2">
-          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">C</div>
+        <div
+          class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer"
+          id="option-2"
+        >
+          <div
+            class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold"
+          >
+            C
+          </div>
           <div class="text-sm" id="text-option-2"></div>
         </div>
 
         <!-- Option D -->
-        <div class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer" id="option-3">
-          <div class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold">D</div>
+        <div
+          class="flex items-center gap-4 rounded-full p-1.5 bg-white cursor-pointer"
+          id="option-3"
+        >
+          <div
+            class="border w-8 h-8 rounded-full flex items-center justify-center ml-1 text-green-600 border-2 border-green-600 font-bold"
+          >
+            D
+          </div>
           <div class="text-sm" id="text-option-3"></div>
         </div>
       </div>
-
-
-
     </section>
 
     <div class="mx-8 md:mx-20 lg:mx-96 flex justify-center gap-4 mt-10 text-sm">
-      <p class="border border-green-600 rounded-full border-2 flex items-center justify-center h-12 w-12 position-absolute text-left">
+      <p
+        class="border border-green-600 rounded-full border-2 flex items-center justify-center h-12 w-12 position-absolute text-left"
+      >
         <span id="question-number">1</span> /
         <span class="text-green-600 font-bold" id="total-questions">25</span>
       </p>
     </div>
 
-
-    <div id="scoreboard" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div data-aos="flip-left" class="flex items-center justify-center gap-4 flex-col bg-white w-60 h-60 p-4 rounded-lg shadow-lg">
-            <p>Your score is:</p>
-            <p class="text-sm"><span class="text-2xl text-green-600" id="score"></span> / 70</p>
-            <button class="text-xs text-white bg-green-600 py-2 px-4 rounded">Take test again</button>
-        </div>
+    <div
+      id="scoreboard"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <div
+        data-aos="flip-left"
+        class="flex items-center justify-center gap-4 flex-col bg-white w-60 h-60 p-4 rounded-lg shadow-lg"
+      >
+        <p>Your score is:</p>
+        <p class="text-sm">
+          <span class="text-2xl text-green-600" id="score"></span> / 70
+        </p>
+        <button class="text-xs text-white bg-green-600 py-2 px-4 rounded">
+          Take test again
+        </button>
+      </div>
     </div>
 
+    <div
+      class="cursor-pointer fixed bottom-40 right-5 rounded-full shadow-xl w-16 h-16 flex items-center justify-center feedback-toggle"
+    >
+      <i class="fa-solid fa-comment text-blue-400 text-3xl"></i>
+    </div>
 
+    <div
+      id="feedback-form"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+    >
+      <form
+        action="https://formspree.io/f/xovqklle"
+        method="POST"
+        class="flex flex-col gap-2 bg-white h-60 w-96 p-4 rounded-lg shadow-lg"
+        id="feedback-form-inner"
+      >
+        <h1 class="text-center headline font-bold tracking-wide">
+          Feedback form
+        </h1>
+        <textarea
+          class="resize-none p-2 text-xs outline-none h-[70%] w-full bg-gray-100"
+          name="message"
+          id="message"
+        ></textarea>
+        <button
+          type="submit"
+          class="bg-blue-400 p-1.5 text-xs font-bold text-white"
+        >
+          Send Feedback
+        </button>
+      </form>
+    </div>
 
+    <script>
+      // Get elements
+      const toggleButton = document.querySelector(".feedback-toggle");
+      const feedbackForm = document.getElementById("feedback-form");
+      const formInner = document.getElementById("feedback-form-inner");
+
+      // Toggle feedback form visibility
+      toggleButton.addEventListener("click", () => {
+        feedbackForm.classList.toggle("hidden");
+      });
+
+      // Close form when clicking outside
+      feedbackForm.addEventListener("click", (e) => {
+        if (e.target === feedbackForm) {
+          feedbackForm.classList.add("hidden");
+        }
+      });
+
+      // Handle form submission
+      feedbackForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Stop default behavior
+        const formData = new FormData(e.target);
+        fetch(e.target.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Feedback submitted successfully!");
+            } else {
+              alert("An error occurred. Please try again.");
+            }
+            feedbackForm.classList.add("hidden"); // Hide the form after submission
+          })
+          .catch(() => {
+            alert("An error occurred. Please try again.");
+          });
+      });
+    </script>
     <!-- <script>
         AOS.init();
       </script> -->
